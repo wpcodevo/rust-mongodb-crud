@@ -26,7 +26,7 @@ impl DB {
         let mut client_options = ClientOptions::parse(mongodb_uri).await?;
         client_options.app_name = Some(database_name.to_string());
 
-        let client = Client::with_options(client_options).unwrap();
+        let client = Client::with_options(client_options)?;
         let database = client.database(database_name.as_str());
 
         let note_collection = database.collection(mongodb_note_collection.as_str());
